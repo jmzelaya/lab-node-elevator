@@ -2,7 +2,7 @@ class Elevator {
   constructor(){
     //floor where the elevator currently is
     this.floor      = 0;
-    this.setVar = [];
+
     //current direction that the elevator is moving in
     //("up" or "down")
     this.direction = 'up';
@@ -21,7 +21,9 @@ class Elevator {
 
   start() {
     //begin a setInterval that calls "update()" every second
-    this.setVar = setInterval(this.update(), 1000);
+    this.setVar = setInterval (() => {
+      this.update();
+    }, 1000);
   }
   stop() {
     //cancel the setInterval started by "start()"
@@ -35,24 +37,24 @@ class Elevator {
     //Examples:
     // "Direction: down | floor 3"
     // "Direction: up | floor 5"
-    console.log("Direction: " + this.direction + " | Floor: " + this.floor);
-  }
+console.log(`Direction: ${this.direction} | Floor: ${this.floor}`);
+}
 
 
   _passengersEnter() { }
   _passengersLeave() { }
   floorUp() {
-    if(this.floor <= this.MAXFLOOR ){
+    if(this.floor < this.MAXFLOOR ){
       this.floor += 1;
-      return this.floor;
+      this.direction = 'up';
     }
 
 
   }
   floorDown() {
-    if(this.floor <= this.MAXFLOOR){
+    if(this.floor > 0){
       this.floor -= 1;
-      return this.floor;
+      this.direction = 'down';
     }
 
   }
